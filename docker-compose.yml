@@ -10,7 +10,7 @@ services:
     volumes:
       - clickhouse-data:/var/lib/clickhouse
     ports:
-      - "9000:9000" 
+      - "9100:9100" 
       - "8123:8123" 
     restart: always
   
