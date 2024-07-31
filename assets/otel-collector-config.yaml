@@ -5,6 +5,12 @@ receivers:
         endpoint: 0.0.0.0:4317
       http:
         endpoint: 0.0.0.0:4318
+      zpages:
+        endpoint: 0.0.0.0:55679
+      ppof:
+        endpoint: 0.0.0.0:1888
+      health_check:
+        endpoint: 0.0.0.0:13133
 processors:
   batch:
   memory_limiter:
@@ -15,6 +21,8 @@ processors:
     check_interval: 5s
 extensions:
   zpages: {}
+  health_check: {}
+  pprof: {}
 exporters:
   clickhouse:
     endpoint: tcp://${env:INIT_DB_HOST}:${env:INIT_DB_PORT}?dial_timeout=10s
