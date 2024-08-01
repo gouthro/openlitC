@@ -10,7 +10,7 @@ services:
     volumes:
       - clickhouse-data:/var/lib/clickhouse
     ports:
-      - "9100:9100" 
+      - "9000:9000" 
       - "8123:8123" 
     restart: always
   
@@ -37,18 +37,15 @@ services:
     container_name: otel-collector
     environment:
       INIT_DB_HOST: clickhouse
-      INIT_DB_PORT: 9100
+      INIT_DB_PORT: 9000
       INIT_DB_DATABASE: ${OPENLIT_DB_NAME:-openlit}
       INIT_DB_USERNAME: ${OPENLIT_DB_USER:-default}
       INIT_DB_PASSWORD: ${OPENLIT_DB_PASSWORD:-OPENLIT}
     ports:
-      - "1888:1888" # pprof extension
-      - "4317:4317" # OTLP gRPC receiver
-      - "4318:4318" # OTLP HTTP receiver
-      - "8888:8888" # Prometheus metrics
-      - "8889:8889" # Prometheus exporter metrics
-      - "13133:13133" # health check extension
-      - "55679:55679" # zpages extension
+      - "4317:4317" 
+      - "4318:4318" 
+      - "8888:8888" 
+      - "55679:55679" 
     depends_on:
       - clickhouse
     volumes:
